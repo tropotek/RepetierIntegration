@@ -979,7 +979,9 @@ class RepetierOutputDevice(NetworkedPrinterOutputDevice):
             message.show()
         elif self._auto_print:
             if not location_url:
-                self._showErrorMessage(i18n_catalog.i18nc("@info:error", "Repetier did not report the location of the uploaded file; unable to start printing automatically."))
+                # Repetier-Server starts the print itself as part of the job upload and does not
+                # return a Location header (unlike the OctoPrint API this code was ported from).
+                Logger.log("d", "No Location header on job upload; Repetier already started the print itself.")
                 return
             end_point = location_url.toString().split(self._api_prefix, 1)[1]
             if self._ufp_supported and end_point.endswith(".ufp"):
