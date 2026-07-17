@@ -1,6 +1,6 @@
 # RepetierIntegration
-# Version 5.1
-Shane Bumpurs
+# Version 5.2
+Mick Mifsud
 
 ### 🛠️ Bugfixed by Claude — connection setup now works as expected
 
