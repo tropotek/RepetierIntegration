@@ -22,6 +22,12 @@
   `repetier_instance_id` still pointed at the old name. `setManualInstance()` now takes the old
   name and rewrites the link on any affected machine stack before reconnecting.
 
+- **Sending a print to a busy or offline printer crashed with `'Message' object has no attribute
+  'replace'`** instead of showing why. `startPrint()` assigned `error_string = Message(...)` and
+  then passed that `Message` as the *text* of another `Message`, whose constructor calls
+  `text.replace()`. The traceback replaced the real notice ("The printer is offline. Unable to
+  start a new job.") and its "Queue job" button. Present since v4.6.
+
 ### Removed
 
 - `Repetier/keys_cache` and `getApiKey()`. The cache was written keyed by the Repetier printer
